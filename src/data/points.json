@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "POINT_ID": 1,
+        "NAME": "METRO Cash & Carry",
+        "DESCRIPTIO": "Гипермаркет, Маршала Прошлякова ул., 14, Москва, 123458"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.791851873032925,
+          37.38846939858479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "POINT_ID": 2,
+        "NAME": "Перовский районный суд г. Москвы",
+        "DESCRIPTIO": "Кусковская ул., 8, стр. 1, Москва, 111398"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.738601272635144,
+          37.77303971486927
+        ]
+      }
+    }
+  ]
+}
