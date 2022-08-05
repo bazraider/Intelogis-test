@@ -1,3 +1,14 @@
-.route_num {
-  font-size: 2em;
+.routeSelection-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .route_num {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  border-bottom: 1px solid black
 }

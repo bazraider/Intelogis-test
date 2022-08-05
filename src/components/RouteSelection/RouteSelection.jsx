@@ -1,5 +1,6 @@
 import { Cascader } from 'antd';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import pointsData from '../../data/points.json'
 
 const options = [
@@ -14,6 +15,7 @@ const options = [
           return {
             value: point.properties.NAME,
             label: point.properties.NAME,
+            id: point.properties.POINT_ID,
           }
         }),
       },
@@ -21,16 +23,21 @@ const options = [
   }
 ];
 
-const onChange = (value) => {
-  console.log(value); // =================================================> TODO DELETE
-};
+export default function RouteSelection({ way, setXChooseData, setYChooseData }) {
+  const onChange = (value, options) => {
+    if (way === 'start') {
+      setXChooseData(options?.at(-1).id)
+    } else {
+      setYChooseData(options?.at(-1).id)
+    }
+  };
 
-const RouteSelection = ({ way }) =>
-  <Cascader
-    options={options}
-    onChange={onChange}
-    placeholder={way === 'start' ? "Отправление из" : "Доставка в"}
-    style={{ margin: '0 10px 0 10px' }}
-  />;
-
-export default RouteSelection;
+  return (
+    <Cascader
+      options={options}
+      onChange={onChange}
+      placeholder={way === 'start' ? "Откуда" : "Куда"}
+      style={{ margin: '0 10px 0 10px' }}
+    />
+  )
+}

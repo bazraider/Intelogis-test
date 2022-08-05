@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { locationsReducer } from './locationsReducer';
+import { pointsReducer } from './pointsReducer';
 
 export const rootReducer = combineReducers({
-  locations: locationsReducer,
+  points: pointsReducer,
 });

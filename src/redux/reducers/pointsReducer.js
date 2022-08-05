@@ -1,9 +1,9 @@
 import { initState } from '../initState';
 
-export const locationsReducer = (state = initState, action) => {
+export const pointsReducer = (state = initState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case 'SET_ALL_LOCATIONS':
+    case 'SET_ALL_POINTS':
       return payload;
     default:
       return state;
