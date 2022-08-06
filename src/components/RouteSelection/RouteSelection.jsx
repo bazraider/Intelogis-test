@@ -23,6 +23,7 @@ const options = [
 ];
 
 export default function RouteSelection({ way, setXChooseData, setYChooseData }) {
+
   const onChange = (value, options) => {
     if (way === 'start') {
       setXChooseData(options?.at(-1).id)

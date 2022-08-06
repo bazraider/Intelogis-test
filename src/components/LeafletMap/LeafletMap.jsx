@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
+import React from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { useSelector } from 'react-redux';
 
-export default function LeafletMap({ coord }) {
+export default function LeafletMap({ numOfTab, coord }) {
 
   console.log('coord', coord);
+  console.log('numOfTab', numOfTab);
 
   const allPoints = useSelector((store) => store.points.features);
-  const [pointsArray, setPointsArray] = useState([]);
-
-  useEffect(() => {
-    if (coord) {
-      setPointsArray(allPoints.filter(el => el.properties.POINT_ID === coord[0] || el.properties.POINT_ID === coord[1]));
-    }
-  }, [coord])
+  const pointsArray = allPoints.filter(el => el.properties.POINT_ID === coord[0] || el.properties.POINT_ID === coord[1]);
 
   console.log('pointsArray', pointsArray)
 
