@@ -6,14 +6,14 @@ import './Tabs.scss'
 const { TabPane } = Tabs;
 
 export default function App() {
-  const [xChooseData, setXChooseData] = useState(null);
-  const [yChooseData, setYChooseData] = useState(null);
+  const [xChooseData, setXChooseData] = useState();
+  const [yChooseData, setYChooseData] = useState();
 
-  console.log('xChooseData =====>', xChooseData); // =================================================> TODO DELETE
-  console.log('yChooseData =====>', yChooseData); // =================================================> TODO DELETE
+  const [x, setX] = useState();
 
   const onChange = (key) => {
-    console.log(key); // =================================================> TODO DELETE
+    setXChooseData();
+    setYChooseData();
   };
 
   return (
@@ -46,7 +46,7 @@ export default function App() {
         key="2"
         style={{ paddingLeft: '10px' }}
       >
-        <LeafletMap />
+        <LeafletMap coord={[xChooseData, yChooseData]} />
       </TabPane>
 
       <TabPane
@@ -59,7 +59,7 @@ export default function App() {
         key="3"
         style={{ paddingLeft: '10px' }}
       >
-        <LeafletMap />
+        <LeafletMap coord={[xChooseData, yChooseData]} />
       </TabPane>
 
       <TabPane
@@ -72,7 +72,7 @@ export default function App() {
         key="4"
         style={{ paddingLeft: '10px' }}
       >
-        <LeafletMap />
+        <LeafletMap coord={[xChooseData, yChooseData]} />
       </TabPane>
 
       <TabPane
@@ -85,7 +85,7 @@ export default function App() {
         key="5"
         style={{ paddingLeft: '10px' }}
       >
-        <LeafletMap />
+        <LeafletMap coord={[xChooseData, yChooseData]} />
       </TabPane>
 
     </Tabs>

@@ -1,6 +1,5 @@
 import { Cascader } from 'antd';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import pointsData from '../../data/points.json'
 
 const options = [

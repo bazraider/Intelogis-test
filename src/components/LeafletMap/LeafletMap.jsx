@@ -1,23 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { useSelector } from 'react-redux';
-import pointsData from '../../data/points.json'
 
 export default function LeafletMap({ coord }) {
+
+  console.log('coord', coord);
+
   const allPoints = useSelector((store) => store.points.features);
   const [pointsArray, setPointsArray] = useState([]);
-  const array = [];
 
-  allPoints.forEach(el => {
-    if (el.properties.POINT_ID === coord[0]) {
-      array.push(el)
-    } else if (el.properties.POINT_ID === coord[1]) {
-      array.push(el)
+  useEffect(() => {
+    if (coord) {
+      setPointsArray(allPoints.filter(el => el.properties.POINT_ID === coord[0] || el.properties.POINT_ID === coord[1]));
     }
-  })
+  }, [coord])
 
-  console.log('array', array);
   console.log('pointsArray', pointsArray)
 
   return (
@@ -30,8 +28,8 @@ export default function LeafletMap({ coord }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {array.length &&
-        array.map(point => (
+      {pointsArray.length &&
+        pointsArray.map(point => (
           <Marker
             key={point.properties.POINT_ID}
             position={[
