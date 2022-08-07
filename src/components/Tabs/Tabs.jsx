@@ -1,6 +1,6 @@
 import { Tabs } from 'antd';
 import LeafletMap from '../../components/LeafletMap/LeafletMap';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import RouteSelection from '../RouteSelection/RouteSelection';
 import { useSelector } from 'react-redux';
 import './Tabs.scss'
@@ -8,27 +8,20 @@ const { TabPane } = Tabs;
 
 export default function App() {
   const countOfRoutes = [1, 2, 3, 4, 5];
-  const allPoints = useSelector((store) => store.points.features);
-  // const pointsArray = allPoints.filter(el => el.properties.POINT_ID === coord[0] || el.properties.POINT_ID === coord[1]);
+  const allCoords = useSelector((store) => store.coords);
 
-  const [xPoint, setXPoint] = useState();
-  const [yPoint, setYPoint] = useState();
-
-  const [coordArray, setCoordArray] = useState([]);
+  const [xPointId, setXPointId] = useState();
+  const [yPointId, setYPointId] = useState();
 
   const onChange = (key) => {
-    console.log(key)
-    const twoPoints = allPoints.filter(el => el.properties.POINT_ID === xPoint || el.properties.POINT_ID === yPoint);
-    console.log('twoPoints', twoPoints);
-    // setCoordArray(...coordArray, coordArray[(key * 2) - 1] = twoPoints.geometry.coordinates[1])
+    // const twoPoints = allPoints.filter(el => el.properties.POINT_ID === xPoint || el.properties.POINT_ID === yPoint);
   };
 
-  useEffect(() => {
-    const twoPoints = allPoints.filter(el => el.properties.POINT_ID === xPoint || el.properties.POINT_ID === yPoint);
-    console.log('twoPoints', twoPoints);
-  }, [allPoints, xPoint, yPoint]);
-
-  console.log('coordArray ===>', coordArray)
+  const analize = (arr, numOfTab) => {
+    const start = numOfTab * 2 - 2;
+    const end = numOfTab * 2;
+    return arr.slice(start, end)
+  }
 
   return (
     <Tabs
@@ -47,16 +40,19 @@ export default function App() {
                 <span className='route_num'>{num}</span>
                 <RouteSelection
                   way='start'
-                  setXChooseData={setXPoint}
+                  numOfTab={num}
+                  setXPointId={setXPointId}
                 />
                 <RouteSelection
-                  setYChooseData={setYPoint}
+                  numOfTab={num}
+                  setYPointId={setYPointId}
                 />
               </div>}
           >
             <LeafletMap
-              numOfTab={num}
-              coord={[xPoint, yPoint]} />
+              id={[xPointId?.id, yPointId?.id]}
+              coord={analize(allCoords, num)}
+            />
           </TabPane>
         )
       })

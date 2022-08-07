@@ -1,17 +1,7 @@
 import React from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
-import { useSelector } from 'react-redux';
 
-export default function LeafletMap({ numOfTab, coord }) {
-
-  console.log('coord', coord);
-  console.log('numOfTab', numOfTab);
-
-  const allPoints = useSelector((store) => store.points.features);
-  const pointsArray = allPoints.filter(el => el.properties.POINT_ID === coord[0] || el.properties.POINT_ID === coord[1]);
-
-  console.log('pointsArray', pointsArray)
-
+export default function LeafletMap({ id, coord }) {
   return (
     <MapContainer
       center={[55.752185526060266, 37.617590770030965]}
@@ -22,7 +12,23 @@ export default function LeafletMap({ numOfTab, coord }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {pointsArray.length &&
+      {coord?.length &&
+        coord?.map((point, index) => (
+          <Marker
+            key={index}
+            position={[
+              point[0],
+              point[1]
+            ]}
+          >
+          </Marker>
+        ))
+      }
+    </MapContainer>
+  )
+}
+
+{/* {pointsArray.length &&
         pointsArray.map(point => (
           <Marker
             key={point.properties.POINT_ID}
@@ -36,7 +42,4 @@ export default function LeafletMap({ numOfTab, coord }) {
               <p>{point.properties.DESCRIPTIO}</p>
             </Popup>
           </Marker>
-        ))}
-    </MapContainer>
-  )
-}
+        ))} */}

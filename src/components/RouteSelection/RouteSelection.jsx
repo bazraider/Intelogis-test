@@ -1,5 +1,6 @@
 import { Cascader } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import pointsData from '../../data/points.json'
 
 const options = [
@@ -15,6 +16,7 @@ const options = [
             value: point.properties.NAME,
             label: point.properties.NAME,
             id: point.properties.POINT_ID,
+            coord: point.geometry.coordinates
           }
         }),
       },
@@ -22,13 +24,17 @@ const options = [
   }
 ];
 
-export default function RouteSelection({ way, setXChooseData, setYChooseData }) {
+export default function RouteSelection({ way, numOfTab, setXPointId, setYPointId }) {
+  const dispatch = useDispatch();
 
   const onChange = (value, options) => {
+    console.log("~ options", options);
     if (way === 'start') {
-      setXChooseData(options?.at(-1).id)
+      setXPointId({ id: options?.at(-1).id, coord: options?.at(-1).coord });
+      dispatch({ type: 'SET_COORDS_IN_ARRAY', payload: { coord: options?.at(-1).coord, numOfTab: numOfTab, index: 0 } })
     } else {
-      setYChooseData(options?.at(-1).id)
+      setYPointId({ id: options?.at(-1).id, coord: options?.at(-1).coord })
+      dispatch({ type: 'SET_COORDS_IN_ARRAY', payload: { coord: options?.at(-1).coord, numOfTab: numOfTab, index: 1 } })
     }
   };
 
