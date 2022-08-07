@@ -1,5 +1,6 @@
 import React from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import Routing from './Routing/Routing'
 
 export default function LeafletMap({ id, coord }) {
   return (
@@ -14,14 +15,17 @@ export default function LeafletMap({ id, coord }) {
       />
       {coord?.length &&
         coord?.map((point, index) => (
-          <Marker
-            key={index}
-            position={[
-              point?.[0] ?? '',
-              point?.[1] ?? '',
-            ]}
-          >
-          </Marker>
+          <>
+            {/* <Marker
+              key={index}
+              position={[
+                point?.[0] ?? '',
+                point?.[1] ?? '',
+              ]}
+            >
+            </Marker> */}
+            <Routing coord={coord} />
+          </>
         ))
       }
     </MapContainer>

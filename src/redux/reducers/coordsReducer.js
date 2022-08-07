@@ -2,7 +2,6 @@ import { initState } from '../initState';
 
 export const coordsReducer = (state = initState, action) => {
   const { type, payload } = action;
-  console.log("~ payload", payload);
   switch (type) {
     case 'SET_COORDS_IN_ARRAY':
       // Определяю индекс инпута в общем массиве и записываю по этому индексу значение

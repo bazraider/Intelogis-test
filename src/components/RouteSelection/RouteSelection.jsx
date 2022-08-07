@@ -28,7 +28,6 @@ export default function RouteSelection({ way, numOfTab, setXPointId, setYPointId
   const dispatch = useDispatch();
 
   const onChange = (value, options) => {
-    console.log("~ options", options);
     if (way === 'start') {
       setXPointId({ id: options?.at(-1).id, coord: options?.at(-1).coord });
       dispatch({ type: 'SET_COORDS_IN_ARRAY', payload: { coord: options?.at(-1).coord, numOfTab: numOfTab, index: 0 } })
