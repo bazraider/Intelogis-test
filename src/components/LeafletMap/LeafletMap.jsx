@@ -17,8 +17,8 @@ export default function LeafletMap({ id, coord }) {
           <Marker
             key={index}
             position={[
-              point[0],
-              point[1]
+              point?.[0] ?? '',
+              point?.[1] ?? '',
             ]}
           >
           </Marker>
@@ -28,18 +28,8 @@ export default function LeafletMap({ id, coord }) {
   )
 }
 
-{/* {pointsArray.length &&
-        pointsArray.map(point => (
-          <Marker
-            key={point.properties.POINT_ID}
-            position={[
-              point.geometry.coordinates[0],
-              point.geometry.coordinates[1]
-            ]}
-          >
-            <Popup>
-              <h2>{point.properties.NAME}</h2>
-              <p>{point.properties.DESCRIPTIO}</p>
-            </Popup>
-          </Marker>
-        ))} */}
+// Example of Popup
+// <Popup>
+//   <h2>{point.properties.NAME}</h2>
+//   <p>{point.properties.DESCRIPTIO}</p>
+// </Popup>
