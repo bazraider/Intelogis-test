@@ -13,9 +13,9 @@ export default function App() {
   const [xPointId, setXPointId] = useState();
   const [yPointId, setYPointId] = useState();
 
-  const onChange = (key) => {
-    // const twoPoints = allPoints.filter(el => el.properties.POINT_ID === xPoint || el.properties.POINT_ID === yPoint);
-  };
+  // const onChange = (key) => {
+  //   console.log(key);
+  // };
 
   const analize = (arr, numOfTab) => {
     const start = numOfTab * 2 - 2;
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <Tabs
       defaultActiveKey="1"
-      onChange={onChange}
+      // onChange={onChange}
       tabPosition={'left'}
       style={{ backgroundColor: '#fff', borderRadius: '10px', margin: '25px auto', width: '80%' }}
     >
