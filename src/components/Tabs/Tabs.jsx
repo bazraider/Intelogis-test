@@ -13,11 +13,7 @@ export default function App() {
   const [xPointId, setXPointId] = useState();
   const [yPointId, setYPointId] = useState();
 
-  // const onChange = (key) => {
-  //   console.log(key);
-  // };
-
-  const analize = (arr, numOfTab) => {
+  const getNumbersOfInputsFromTabNumber = (arr, numOfTab) => {
     const start = numOfTab * 2 - 2;
     const end = numOfTab * 2;
     return arr.slice(start, end)
@@ -26,7 +22,6 @@ export default function App() {
   return (
     <Tabs
       defaultActiveKey="1"
-      // onChange={onChange}
       tabPosition={'left'}
       style={{ backgroundColor: '#fff', borderRadius: '10px', margin: '25px auto', width: '80%' }}
     >
@@ -51,7 +46,7 @@ export default function App() {
           >
             <LeafletMap
               id={[xPointId?.id, yPointId?.id]}
-              coord={analize(allCoords, num)}
+              coord={getNumbersOfInputsFromTabNumber(allCoords, num)}
             />
           </TabPane>
         )

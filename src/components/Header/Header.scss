@@ -5,21 +5,29 @@ header {
   z-index: 1;
   display: flex;
   align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  width: 10vw;
-
-  img {
-    width: 80px;
-    height: 80px;
-  }
+  justify-content: center;
 }
 
 .navigation {
-  width: 80vw;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 0px) and (max-width: 670px) {
+    flex-direction: column;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin: 10px 30px 10px 0;
+
+    img {
+      width: 180px;
+      height: 44px;
+    }
+  }
 
   a {
     color: white;
